@@ -8,15 +8,15 @@
 #
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
-development:
-  adapter: mysql2
-  encoding: utf8
-  reconnect: false
-  database: aaexpress
-  pool: 5
-  username: root
-  password: root
-  socket: /var/run/mysqld/mysqld.sock
+#development:
+ # adapter: mysql2
+ # encoding: utf8
+ # reconnect: false
+ # database: aaexpress
+ # pool: 5
+ # username: root
+ # password: root
+ # socket: /var/run/mysqld/mysqld.sock
 
 
 # Warning: The database defined as "test" will be erased and
@@ -32,11 +32,11 @@ development:
 #  password:
 #  socket: /var/run/mysqld/mysqld.sock
 #
-#production:
- #  adapter: postgresql
-  # encoding: unicode
-  # pool: 5
-  # database: dli9eq9pk586g
+production:
+   adapter: postgresql
+   encoding: unicode
+   pool: 5
+  # database: 
   # username: qxmpihvwzitxxu
   #password: k7iersFVtAfWX3_0HxnstG7yq4
   #host: ec2-23-21-185-168.compute-1.amazonaws.com

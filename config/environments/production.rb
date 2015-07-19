@@ -83,7 +83,6 @@ TrackerV1::Application.configure do
     :authentication       => "plain",
     :enable_starttls_auto => true
    }
-end
   # Amazon S3 settings for Paperclip uploads
    
 
