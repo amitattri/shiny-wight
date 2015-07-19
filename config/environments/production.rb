@@ -65,8 +65,7 @@ TrackerV1::Application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => 'http://www.tmexpressdelivery.com/' }
-
+  config.action_mailer.default_url_options = { :host => '127.0.0.1:3000' }
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation can not be found).
   config.i18n.fallbacks = true
@@ -74,27 +73,19 @@ TrackerV1::Application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
-  config.action_mailer.delivery_method = :smtp
+  cconfig.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
-    :address              => "smtp.mandrillapp.com",
+    :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => "mandrillapp.com",
-    :user_name            => "aniltimt@gmail.com",
-    :password             => "0nlqkVmP5HE70jILCnjmcw",
+    :domain               => "gmail.com",
+    :user_name            => "attriamit8@gmail.com",
+    :password             => "amit 1234",
     :authentication       => "plain",
     :enable_starttls_auto => true
    }
+end
   # Amazon S3 settings for Paperclip uploads
-  config.paperclip_defaults = {
-    :storage => :s3,
-    :s3_protocol => 'http',
-    :bucket => "tmexpress",
-    :s3_credentials => {
-      :bucket => "tmexpress",
-      :access_key_id => "AKIAJW6ADOLPG7M5RJ5A",
-      :secret_access_key => "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"
-    }
-  }
+   
 
   # Disable automatic flushing of the log to improve performance.
   # config.autoflush_log = false
