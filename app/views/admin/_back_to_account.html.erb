@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 id="myModalLabel">Admin security check.</h3>
+</div>
+<div class="modal-body">
+  <div class="row-fluid">
+    <div class="span12 bg-fom">
+    <%= form_tag({:action => 'back_to_account'}, :method => 'post') do %>
+        <div class="row-fluid">
+          <div class="control-group">
+            <label for="inputEmail" class="control-label">Please enter admin password for login.you have only one chance.</label>
+            <%= password_field_tag :admin_password, '', :class => "span12" %>
+          </div>
+        </div>
+        <%= submit_tag "Login", :name => nil , :id => 'close_btn', :class=>"btn btn-success pull-right track-search" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+</div>
+<script>
+  $(document).ready(function() {
+    $('#close_btn').click(function(e) {
+      e.preventDefault();
+      $('#modal-window-one').modal('hide');
+      $('form').submit();
+    });
+  });
+</script>    

@@ -1,0 +1,13 @@
+<% if user_signed_in? %>
+  <%= link_to 'Logged In [click to logout]', destroy_user_session_path %><br/>
+<br/>
+  <p>Welcome <b><%= current_user.email %></b> <%= link_to 'Edit Profile', edit_user_registration_path %></p>
+
+
+  <% if current_user.admin? %>
+    <b><h3><%= link_to 'Manage Users', admin_users_path %></h3></b>
+  <% end %>
+<% else %>
+  <p>You are not signed in.</p>
+  <%= link_to 'Login', new_user_session_path %>
+<% end %>

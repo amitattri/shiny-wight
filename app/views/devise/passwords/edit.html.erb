@@ -1,0 +1,28 @@
+<div class="inner-page">
+  <h3>Change your password</h3>
+</div>
+<!-- SITE MAIN CONATANT Start -->
+<div class="container marginTop30" style="min-height:500px;">
+  <div class="span6 print-lable MarginAuto">
+    <div class="log-name">Change your password</div>
+    <div class="row-fluid">
+	  <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+        <%= devise_error_messages! %>
+        <%= f.hidden_field :reset_password_token %>
+        <div class="control-group">
+          <label class="control-label" for="inputEmail">New password</label>
+          <%= f.password_field :password, :autofocus => true, :class => "span12" %>
+        </div>
+  		<div class="control-group">
+          <label class="control-label" for="inputEmail">Confirm new password</label>
+            <%= f.password_field :password_confirmation, :class => "span12" %>
+        </div>
+        <div class="control-group">
+      	  <%= f.submit "Change my password" ,:class => "btn btn-success pull-right marginTop10 marginBottom10"%>
+        </div>
+	  <% end %>
+    </div>
+  </div><!-- Span Closed -->
+</div>
+
+<!-- SITE MAIN CONATANT Close -->

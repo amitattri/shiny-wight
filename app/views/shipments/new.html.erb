@@ -1,0 +1,19 @@
+<div class="inner-page">
+  <h3>New Shipment</h3>
+</div>
+<%= render 'form' %>
+<script type='text/javascript'>
+(function()
+{
+  if( window.localStorage )
+  {
+    if( !localStorage.getItem( 'firstLoad' ) )
+    {
+      localStorage[ 'firstLoad' ] = true;
+      window.location.reload();
+    }  
+    else
+      localStorage.removeItem( 'firstLoad' );
+  }
+})();
+</script>

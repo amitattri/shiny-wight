@@ -1,0 +1,51 @@
+<div class="inner-page">
+ <h3>Address Listing</h3>
+</div>
+<!-- SITE MAIN CONATANT Start -->
+<div class="container marginTop30" style="min-height:500px;">
+  <div class="row-fluid fom-heading">
+   <div class="span12">
+    <h4 id="heading">Address Listing</h4>
+   </div>
+  </div>
+  <div class="row-fluid">
+    <div class="span6 pull-right">
+      <ul class="nav nav-pills pull-right">
+        <li>
+        <%= link_to "Shipping History", reporting_path%>
+        </li>
+        <li><%= link_to "Today's Manifest", manifest_path%></li>
+        <li class="active"><%= link_to "Address listing", address_listing_path%></li>
+      </ul>
+    </div><!-- Span Closed -->
+  </div>
+  <div class="row-fluid">
+    <table class="TrackShipmentthre display"  id="example">
+      <thead>
+        <tr bgcolor="559012">
+          <th>Client</th>
+          <th>Contact Name</th>
+          <th>Address</th>
+          <th>City, State</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @addresses.each do |address| %>
+          <tr class="odd_gradeX">
+            <td><%= address.client %></td>
+            <td><%= address.recipient %></td>
+            <td><%= address.rep_address_one %> <%= address.rep_address_two %></td>
+            <td><%= address.city %>, <%= address.state %></td>
+            <td><%= address.phone %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="row-fluid">
+    <a href="/print-page?address=1" class="btn btn-success pull-right marginTop20 marginBottom10"><i class="icon-print icon-white"></i> Print Shipment </a>
+  </div>
+</div>
+
+<!-- SITE MAIN CONATANT Close -->

@@ -1,0 +1,83 @@
+<% if !flash[:notice].nil? %>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="alert alert-error alert-dismissable" id="alert-message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <b><%= flash[:notice] %></b>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if !flash[:message].nil? %>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="alert alert-success alert-dismissable" id="alert-message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <b><%= flash[:message] %></b>
+      </div>
+    </div>
+  </div>
+<% end %>
+<div class="container-fluid home-intro marginBottom20">
+ <div class="container">
+  <div class="row-fluid">
+   <div class="span4 gree">
+    <div class="gree-contant">
+      <h2>Track Shipment</h2>
+      <%= form_tag homes_path, :method => 'get' do %>
+        <p>
+          <%= text_area_tag :tracking_no, params[:tracking_no], :placeholder=>"Enter Tracking Number" %>
+          <%= submit_tag "Go", :name => nil ,:class=>"btn btn-success pull-right track-search"%>
+        </p>
+      <% end %>
+    <div class="clearfix"></div>
+    <div style="border-bottom: 1px dotted #ADE367; margin: 20px 0;"></div>
+      <% if user_signed_in? %>
+        <a href="/new_contact" class="btn btn-large btn-block btn-success">Open an Account</a>
+      <% else %>
+        <a href="/users/sign_up" class="btn btn-large btn-block btn-success">Open an Account</a>
+      <% end %>
+<!--     <h3>Delivery Rates & Times</h3>
+     <input type="text" name="" value="" placeholder="From Zip Code" class="in-1" />
+     <input type="text" name="" value="" placeholder="To Zip Code" class="in-1" />
+     <button class="btn btn-success pull-right" type="button">Go</button>
+   <div class="clearfix"></div>
+    <h3>Drop Box Locator</h3>
+     <input type="text" name="" value="" placeholder="Zip Code" />
+     <button class="btn btn-success pull-right" type="button">Go</button>-->
+    <div class="row-fluid text-center marginBottom10 marginTop10">
+    <%= image_tag "signUp.png", alt: "Sign Up", style: "text-align:center" %>
+    </div>
+    </div>
+   </div>
+   <div class="span8 banner">
+    <%= image_tag "banner.jpg", alt: "Banner" %>
+   </div>
+  </div>
+ </div>
+</div>
+<!-- SITE MAIN CONATANT Start -->
+<div class="container">
+ <div class="row-fluid">
+  <div class="span6 bodrG">
+   <div class="thum"><%= image_tag "tt1.jpg", alt: "Thumb1" %></div>
+   <div class="Box-Contant">
+    <p>At Aa EXPRESS DELIVERY INC., our commitment is to provide our customers with the best same-day and next day delivery solutions throughout southern California and its surrounding areas. We relentlessly pursue providing the most environmentally friendly, responsive, customer oriented, point-to-point delivery service in Southern California and its surrounding areas.</p>
+    <p><a href="/about_us">Learn More..</a></p>
+   </div>
+  </div>
+  <div class="span6 bodrG">
+   <div class="thum"><%= image_tag "tt2.jpg", alt: "Thumb1" %></div>
+   <div class="Box-Contant">
+    <p>Aa EXPRESS DELIVERY INC. performs hundreds of deliveries flawlessly on a daily basis. Aa EXPRESS DELIVERY INC. is committed to remaining at the forefront of the latest same-day and next day delivery technology. It is our goal to provide such superior service, that our customers rave about our service each time they use us.</p>
+    <p><a href="/about_us">Learn More..</a></p>
+   </div>
+  </div>
+</div>
+</div>
+<!-- SITE MAIN CONATANT Close -->
+<!-- Flash Message Auto Close -->
+<script>
+    $("#alert-message").alert();
+    window.setTimeout(function() { $("#alert-message").alert('close'); }, 5000);
+</script>

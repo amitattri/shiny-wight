@@ -1,0 +1,36 @@
+<%= stylesheet_link_tag "application","bootstrap", media: "all", "data-turbolinks-track" => true %>
+<%= stylesheet_link_tag "application", media: "print" %><br/><br/><br/><br/>
+<div class='title' style="text-align: center"><b>SHIPMENT LABEL</b></div>
+<div class="container marginTop30" style="min-height:500px;">
+  <div class="span7 print-lable MarginAuto">
+    <div class="row-fluid logo-print">
+      <div class="span3 marginBottom10 marginTop10">
+        <%= image_tag("logo.png", alt: "Logo") %>
+      </div>
+    </div>
+    <div class="row-fluid">
+      <div class="span7">
+        <h1 class="from-1">From:</h1>
+        <p><%= user_of(@shipment).first_name %> <%= user_of(@shipment).last_name %>,<br/>
+        <%= user_of(@shipment).usr_address %>,<br/>
+          <%= user_of(@shipment).city %>,<br/>
+          <%= user_of(@shipment).state %>, <%= user_of(@shipment).zipcode %><br/>
+          Ph.<%= user_of(@shipment).phone %></p>
+        <br />
+        <h1 class="from-1">To:</h1>
+        <p><%= @client.client %>,<br/>
+          <%= @client.rep_address_one %> <%= @client.rep_address_two %>,<br/>
+          <%= @client.city %>,<br/>
+          <%= @client.state %>, <%= @client.zipcode %><br/>
+          Ph.<%= @client.phone %></p>
+      </div>
+      <div class="span4">
+        <img src="<%= qr_code(190, @shipment.tracking) %>" />
+      </div>
+    </div>
+  </div><br/><br/>
+  <div class="row-fluid" style="text-align: center">
+    <button class="btn btn-success" type="button" onClick="window.print()"><i class="icon-print icon-white"></i> Print Shipment</button><br/><br/>
+    <a href="<%= back_page %>">Back to Shipment Page</a>
+  </div>
+</div>

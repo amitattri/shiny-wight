@@ -1,0 +1,32 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 id="myModalLabel">Add note to user account.</h3>
+</div>
+<div class="modal-body">
+  <div class="row-fluid">
+    <div class="span12 bg-fom">
+    <%= form_tag({:action => 'add_note_to_user'}, :remote => true, :method => 'post') do %>
+      <%= hidden_field_tag :id,'', :value => @requested_user.id %>
+        <div class="row-fluid">
+          <div class="control-group">
+            <label for="inputEmail" class="control-label">Add new note</label>
+            <%= text_area_tag :usr_note, @requested_user.usr_note, :class => "span12", :rows => 5 %>
+          </div>
+        </div>
+        <%= submit_tag "Create", :name => nil , :id => 'close_btn', :class=>"btn btn-success pull-right track-search" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+</div>
+<script>
+  $(document).ready(function() {
+    $('#close_btn').click(function(e) {
+      e.preventDefault();
+      $('#modal-window-one').modal('hide');
+      $('form').submit();
+    });
+  });
+</script>    

@@ -1,0 +1,35 @@
+<div class="inner-page">
+  <h3>Log In</h3>
+</div>
+<!-- SITE MAIN CONATANT Start -->
+<div class="container marginTop30" style="min-height:500px;">
+  <div class="span6 print-lable MarginAuto">
+    <div class="log-name">Log In </div>
+    <div class="row-fluid">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <span style="color:red"><%= devise_error_messages! %></span>
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">Email<span style="color:red"> *</span></label>
+         <%= f.email_field :email, :required =>'required', :autofocus => true, :class => "span12", :id => "inputEmail", :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="inputEmail">Password<span style="color:red"> *</span></label>
+        <%= f.password_field :password, :class => "span12", :id => "inputEmail", :required =>'required' %>
+      </div>
+      <div class="control-group">
+        <%= render "devise/shared/links" %>
+        <%= f.submit "Log In", :class => "btn btn-success pull-right marginTop10 marginBottom10" %>
+      </div>
+      <% end %>
+    </div>
+  </div><!-- Span Closed -->
+</div>
+<!-- SITE MAIN CONATANT Close -->
+<script>
+  $(document).keypress(function (e) {
+    if (e.which == 13) {
+      $('#new_user').submit();
+      return false;
+    }
+  });
+</script>

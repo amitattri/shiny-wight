@@ -1,0 +1,17 @@
+Hello <%= @user.first_name %>,
+<br/>
+Old Shipment is Updated. Please find following details of shipment:-
+<p>
+  <b>Tracking No. = <%= @shipment.tracking %></b><br/>
+  No. of Package(s)  = <%= @shipment.number_of_packages %><br/>
+  Ship Date = <%= @shipment.ship_date %><br/>
+  Expected Delivery Date = <%= @shipment.expected_delivery_date %><br/>
+  Status = <%= @shipment.status %><br/>
+  <b>Special Instruction:- </b>
+  <p>
+  	<%= @shipment.instructions %>
+  </p>
+</p>
+<br/><br/>
+----------<br/>
+Aa-EXPRESS

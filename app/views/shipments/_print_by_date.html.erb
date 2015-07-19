@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 id="myModalLabel">Print shipment by dates</h3>
+</div>
+<div class="modal-body">
+  <div class="row-fluid">
+    <div class="span12 bg-fom">
+    <%= form_tag('print-page') do %>
+      <% if @print_shipment == true %>
+        <%= hidden_field_tag :shipment,'', :value => 1 %>
+      <% elsif @print_tracking == true %>
+        <%= hidden_field_tag :tracking,'', :value => 1 %>
+      <% elsif @print_reporting == true %>
+        <%= hidden_field_tag :reporting,'', :value => 1 %>
+      <% elsif @su_print == true %>
+        <%= hidden_field_tag :su_print,'', :value => 1 %>
+      <% end %>
+        <div class="row-fluid">
+          <div class="control-group span6 clander">
+            <label class="control-label" for="inputEmail">From</label>
+            <%= text_field_tag :shipment_from, params[:shipment_from], :class => "span12 datepicker3" %>
+            <i class="fa fa-calendar"></i>
+          </div>
+          <div class="control-group span6 clander">
+            <label class="control-label" for="inputEmail">To</label>
+            <%= text_field_tag :shipment_to, params[:shipment_to], :class => "span12 datepicker3" %>
+            <i class="fa fa-calendar"></i>
+          </div>
+        </div>
+        <%= submit_tag "Print Shipment", :name => nil , :id => 'close_btn', :class=>"btn btn-success pull-right track-search" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+</div>
+<script>
+  $(document).ready(function() {
+    $('#close_btn').click(function(e) {
+      e.preventDefault();
+      $('#modal-window').modal('hide');
+      $('form').submit();
+    });
+    $('.datepicker3').datepicker({orientation: "auto",  "autoclose": true,format: 'mm-dd-yyyy'});
+    $('.datepicker3').datepicker("setDate",new Date());
+  });
+</script>    

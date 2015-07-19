@@ -1,0 +1,46 @@
+<div class="inner-page">
+  <h3>Manage Misc. Parameters</h3>
+</div>
+<!-- SITE MAIN CONATANT Start -->
+<div class="container marginTop30" style="min-height:500px;">
+  <div class="row-fluid fom-heading">
+    <div class="span12">
+      <h4>Set cut off time for shipment</h4>
+    </div>
+  </div>
+  <% if !flash[:notice].nil? %>
+      <div class="row-fluid">
+        <div class="alert alert-warning">
+          <%= flash[:notice] %>
+        </div>
+      </div>
+  <% end %>
+  <% if !flash[:message].nil? %>
+      <div class="row-fluid">
+        <div class="alert alert-success">
+          <%= flash[:message] %>
+        </div>
+      </div>
+  <% end %>
+  <div class="row-fluid">
+    <div class="span6 bg-fom">
+        <div class="control-group">
+         <label class="control-label" for="inputEmail">Current cut off time = <%= @current_time.cut_off_time.strftime("%I:%M%P") %>, only super admin can set this.</label>
+         <% if user_signed_in? && current_user.is_superadmin? %>
+          <%= form_tag admin_set_cut_off_time_path, :method => 'post' do %>
+             <div class="input-append bootstrap-timepicker">
+                <input name="cut_off_time" id="timepicker1" type="text" class="input-small">
+               <span class="add-on"><i class="icon-time"></i></span>
+             </div>
+            <%= submit_tag "Set this time", :name => nil ,:class=>"btn btn-success pull-right track-search"%>
+          <% end %>
+         <% end %>
+        </div>
+      </div><!-- Span Closed -->
+  </div>
+</div>
+<!-- SITE MAIN CONATANT Close -->
+
+<script type="text/javascript">
+$('#timepicker1').timepicker();
+</script>

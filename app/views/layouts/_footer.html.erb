@@ -1,0 +1,24 @@
+<!-- Footer Start -->
+<div class="footer">
+  <div class="container">
+   <div class="row-fluid">
+    <div class="span6 f-nav pull-right">
+      <ul>
+        <li><%= link_to "About Us", about_us_path %></li>
+        <li><a href="/terms_of_use">Terms of Use</a></li>
+        <li><%= link_to "Contact Us", new_contact_path %></li>
+      </ul>
+    </div>
+    <div class="span5 copy">
+      <p>© <%=Time.now.year%> All Right Reserved.</p>
+    </div>
+  </div>
+</div>
+<!-- Footer Closed -->
+
+<!-- BootStart FremWork Js -->
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+
+  <%#= javascript_include_tag "application", "data-turbolinks-track" => true %>

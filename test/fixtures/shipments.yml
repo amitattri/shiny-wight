@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  company: MyString
+  address1: MyString
+  address2: MyString
+  city: MyString
+  state: MyString
+  zipcode: 1
+  recipient: MyString
+  tmx: MyString
+  signature: MyString
+  refrence: MyString
+  packages: 1
+  notification: false
+  tracking: 1
+  ship_date: 2014-02-04
+  expected_delivery_date: 2014-02-04
+
+two:
+  company: MyString
+  address1: MyString
+  address2: MyString
+  city: MyString
+  state: MyString
+  zipcode: 1
+  recipient: MyString
+  tmx: MyString
+  signature: MyString
+  refrence: MyString
+  packages: 1
+  notification: false
+  tracking: 1
+  ship_date: 2014-02-04
+  expected_delivery_date: 2014-02-04

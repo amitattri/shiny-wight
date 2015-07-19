@@ -1,0 +1,142 @@
+<%= stylesheet_link_tag 'print', :media => "print" %>
+<br/><br/>
+<div style="text-align: center"><img src="/assets/logo-713b364bf40a77305df4de1e1d4477b4.png"/></div>
+<% if @print_shipment == true %>
+ <div class='title' style="text-align: center"><b>CURRENT SHIPMENT'S</b></div>
+ <br/>
+ <table border="1" style="text-align: center" width="1000" align="center">
+   <tr>
+     <td><b>Ship Form</b></td>
+     <td><b>Ship To</b></td>
+     <td><b>Tracking No.</b></td>
+     <td><b>Ship Date</b></td>
+     <td><b>Shipment Status</b></td>
+   </tr>
+   <% Array(@shipments).each do |shipment| %>
+   <tr class="odd_gradeX">
+     <td><%= user_of(shipment).company_name %></td>
+     <td><%= client_of(shipment).client %></td>
+     <td><%= shipment.tracking %></td>
+     <td><%= shipment.ship_date.strftime("%m/%d/%Y") %></td>
+     <td><%= shipment.status %></td>
+   </tr>
+   <% end %>
+ </table>
+ <br />
+    <div class="row-fluid" style="text-align: center">
+      <button class="btn btn-success" type="button" onClick="window.print()"><i class="icon-print icon-white"></i> Print Shipment</button><br/><br/>
+      <a href="/shipments">Back to Shipment Page</a>
+    </div>
+<% elsif @print_tracking == true %>
+  <div class='title' style="text-align: center"><b>TRACKING'S</b></div>
+  <br/>
+  <table border="1" style="text-align: center" width="1000" align="center">
+    <tr>
+      <th><b>Tracking No.</b></th>
+      <th><b>Client</b></th>
+      <th><b>Contact Name</b></th>
+      <th><b>Ship Date</b></th>
+      <th><b>Shipment Status</b></th>
+      <th><b>City, State</b></th>
+      <th><b>Phone</b></th>
+    </tr>
+    <% Array(@shipments).each do |shipment| %>
+    <tr class="odd_gradeX">
+      <td><%= shipment.tracking %></td>
+      <td><%= client_of(shipment).client %></td>
+      <td><%= client_of(shipment).recipient %></td>
+      <td><%= shipment.ship_date.strftime("%m/%d/%Y") %></td>
+      <td><%= shipment.status %></td>
+      <td><%= client_of(shipment).city %>, <%= client_of(shipment).state %></td>
+      <td><%= client_of(shipment).phone %></td>
+    </tr>
+    <% end %>
+  </table>
+  <br />
+  <div class="row-fluid" style="text-align: center">
+    <button type="button" onClick="window.print()">Print Tracking</button><br/><br/>
+    <a href="/tracking">Back to Tracking Page</a>
+  </div>
+<% elsif @print_reporting == true %>
+  <div class='title' style="text-align: center"><b>SHIPPING HISTORY</b></div>
+  <br/>
+  <table border="1" style="text-align: center" width="1000" align="center">
+    <tr>
+      <td><b>Ship Form</b></td>
+      <td><b>Ship To</b></td>
+      <td><b>Tracking No.</b></td>
+      <td><b>Ship Date</b></td>
+      <th><b>Packages</b></th>
+      <th><b>Shipment Status</b></th>
+    </tr>
+    <% Array(@shipments).each do |shipment| %>
+        <tr class="odd_gradeX">
+          <td><%= user_of(shipment).company_name %></td>
+          <td><%= client_of(shipment).client %></td>
+          <td><%= shipment.tracking %></td>
+          <td><%= shipment.ship_date.strftime("%m/%d/%Y") %></td>
+          <td><%= shipment.number_of_packages %></td>
+          <td><%= shipment.status %></td>
+        </tr>
+    <% end %>
+  </table>
+  <br />
+  <div class="row-fluid" style="text-align: center">
+    <button type="button" onClick="window.print()">Print Shipping History</button><br/><br/>
+    <a href="/reporting">Back to Shipping History</a>
+  </div>
+<% elsif @su_print == true %>
+  <div class='title' style="text-align: center"><b>SHIPPING HISTORY</b></div>
+  <br/>
+  <table border="1" style="text-align: center" width="1000" align="center">
+    <tr>
+      <td><b>Ship Form</b></td>
+      <td><b>Ship To</b></td>
+      <td><b>Tracking No.</b></td>
+      <td><b>Ship Date</b></td>
+      <th><b>Packages</b></th>
+      <th><b>Shipment Status</b></th>
+    </tr>
+    <% Array(@shipments).each do |shipment| %>
+        <tr class="odd_gradeX">
+          <td><%= user_of(shipment).company_name %></td>
+          <td><%= client_of(shipment).client %></td>
+          <td><%= shipment.tracking %></td>
+          <td><%= shipment.ship_date.strftime("%m/%d/%Y") %></td>
+          <td><%= shipment.number_of_packages %></td>
+          <td><%= shipment.status %></td>
+        </tr>
+    <% end %>
+  </table>
+  <br />
+  <div class="row-fluid" style="text-align: center">
+    <button type="button" onClick="window.print()">Print Shipping History</button><br/><br/>
+    <a href="admin/shipment_history">Back to Shipping History</a>
+  </div>
+<% elsif @print_addresses == true %>
+  <div class='title' style="text-align: center"><b>ADDRESS LISTING</b></div>
+  <br/>
+  <table border="1" style="text-align: center" width="1000" align="center">
+    <tr>
+      <th><b>Client</b></th>
+      <th><b>Contact Name</b></th>
+      <th><b>Address</b></th>
+      <th><b>City, State</b></th>
+      <th><b>Phone</b></th>
+    </tr>
+    <% Array(@addresses).each do |address| %>
+    <tr class="odd_gradeX">
+      <td><%= address.client %></td>
+      <td><%= address.recipient %></td>
+      <td><%= address.rep_address_one %> <%= address.rep_address_two %></td>
+      <td><%= address.city %>, <%= address.state %></td>
+      <td><%= address.phone %></td>
+    </tr>
+    <% end %>
+  </table>
+  <br />
+  <div class="row-fluid" style="text-align: center">
+    <button type="button" onClick="window.print()">Print address listing</button><br/><br/>
+    <a href="/reporting">Back to Reporting Page</a>
+  </div>
+<% end %>

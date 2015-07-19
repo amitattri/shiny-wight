@@ -1,0 +1,4 @@
+$('#heading').html("Shipping History")
+$('#manifest').removeClass( "active")
+$('#history').addClass( "active")
+$('#shipment_table').html('<%= escape_javascript(render :partial => 'shipments/shipment_table', :object => @shipments) %>');

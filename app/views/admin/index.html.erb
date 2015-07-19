@@ -1,0 +1,74 @@
+<div class="inner-page">
+  <h3>Customer Listing</h3>
+</div>
+<!-- SITE MAIN CONATANT Start -->
+<div class="container marginTop30" style="min-height:500px;">
+  <div class="row-fluid fom-heading">
+    <div class="span12">
+      <h4>Customer Details</h4>
+    </div>
+  </div>
+  <% if !flash[:notice].nil? %>
+      <div class="row-fluid">
+        <div class="alert alert-warning">
+          <%= flash[:notice] %>
+        </div>
+      </div>
+  <% end %>
+  <% if !flash[:message].nil? %>
+      <div class="row-fluid">
+        <div class="alert alert-success">
+          <%= flash[:message] %>
+        </div>
+      </div>
+  <% end %>
+  <div class="row-fluid">
+  <div id="modal-window-one" class="modal hide" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <table class="TrackShipmentadmin display"  id="example">
+      <thead>
+      <tr bgcolor="559012">
+        <th>Account Number</th>
+        <th>Company Name</th>
+        <th>Contact Name</th>
+        <th>Service Type</th>
+        <th>Action's</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+          <tr class="odd_gradeX">
+            <td><%= user.account_number %></td>
+            <td><%= (user.is_admin? || user.is_superadmin?) ? user.company_name : (link_to user.company_name, edit_user_registration_path("id" => user.account_number)) %></td>
+            <td><%= user.first_name %> <%= user.last_name %></td>
+            <td><%= user.service_type %></td>
+            <td>
+              <% if((!user.is_admin? && !user.is_superadmin?) && (user.service_type !='pending' && user.is_active?)) %>
+                <a href="/admin/login_as_user?id=<%= user.account_number %>" data-confirm="Are you sure, you want to switch user account?"><i class="fa fa-user"title = "Switch User"><i class="fa fa-sign-in"></i></i></a> |
+              <% else %>
+                <i class="fa fa-user"title = "Can't Switch"><i class="fa fa-sign-in"></i></i> |
+              <% end %>
+              <% if(user.is_active? && (!user.is_admin? && !user.is_superadmin?)) %>
+                <a  style="color:#333333;" href='/admin/user_onoff_flag?id=<%= user.account_number %>'><i class="fa fa-truck" title = "Service's Active"><i class="fa fa-check"></i></i></a> |
+              <% elsif(!user.is_active? && (!user.is_admin? && !user.is_superadmin?))  %>
+                <a href='/admin/user_onoff_flag?id=<%= user.account_number %>'><i class="fa fa-truck" title = "Service's De-active"><i class="fa fa-times"></i></i></a> |
+              <% else %>
+                <i class="fa fa-truck" title = "Service Activated"><i class="fa fa-check"></i></i> |
+              <% end %>
+              <a href="/admin/add_note_to_user?id=<%= user.id %>" data-toggle="modal" data-target="#modal-window-one" data-remote="true"><i class="fa fa-user" title = "Add Note"></i><i class="fa fa-clipboard"></i></a>
+              <% if current_user.is_superadmin? %>
+                <% if user.is_superadmin? %>
+                  | <i class="fa fa-user" title = "Super Admin"><i class="fa fa-check"></i></i>
+                <% elsif user.is_admin? %>
+                  | <a href="/admin/make_user_admin?id=<%= user.id %>" style="color:#333333;" data-confirm="Are you sure, you want to take back admin privileges?"><i class="fa fa-user" title = "Revoke admin privileges"><i class="fa fa-check"></i></i></a>
+                <% else %>
+                  | <a href="/admin/make_user_admin?id=<%= user.id %>" data-confirm="Are you sure, you want to make this user admin?"><i class="fa fa-user" title = "Give admin privileges"><i class="fa fa-times"></i></i></a>
+                <% end %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- SITE MAIN CONATANT Close -->

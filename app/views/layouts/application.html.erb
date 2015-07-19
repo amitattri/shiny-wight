@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aa Express</title>
+  <%= stylesheet_link_tag "application","bootstrap","bootstrap-responsive", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+</head>
+<body>
+  <% if current_user && (current_user.is_admin? || current_user.is_superadmin? ) %>
+    <%= render 'layouts/admin' %>
+  <% else %>
+    <%= render 'layouts/header' %>
+  <% end %>
+
+  <%= yield %>
+
+  <%= render 'layouts/footer' %>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<div class="inner-page">
+  <h3>Sign Up</h3>
+</div>
+<div class="container marginTop30" style="min-height:500px;">
+  <div class="row-fluid fom-heading">
+    <div class="span12">
+      <h4>Registration Form</h4>
+    </div>
+  </div>
+  <% if !flash[:notice].nil? %>
+    <div class="row-fluid">
+        <div class="alert alert-warning">
+            <%= flash[:notice] %>
+        </div>
+    </div>
+  <% end %>
+  <div class="row-fluid">
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+        <div class="span6 bg-fom" style="margin: 0px auto; float: none;">
+          <% if resource.errors.any? %>
+              <ul>
+                <% resource.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+              </ul>
+          <% end %>
+          <div class="control-group span6">
+            <label for="inputEmail" class="control-label">First Name<span style="color:red"> *</span></label>
+            <%= f.text_field :first_name, {class: "span12", :autofocus => true, :required =>'required'} %>
+          </div>
+            <div class="control-group span6">
+            <label for="inputEmail" class="control-label">Last Name<span style="color:red"> *</span></label>
+            <%= f.text_field :last_name, {class: "span12", :required =>'required'} %>
+          </div>
+          <div class="control-group">
+            <label for="inputEmail" class="control-label">Email<span style="color:red"> *</span></label>
+            <%= f.email_field :email, {class: "span12", :required =>'required', :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}'} %>
+          </div>
+          <div class="control-group">
+            <label for="inputEmail" class="control-label">Password<span style="color:red"> *</span></label>
+            <%= f.password_field :password, {class: "span12", :required =>'required'} %>
+          </div>
+          <div class="control-group">
+            <label for="inputEmail" class="control-label">Company Name<span style="color:red"> *</span></label>
+            <%= f.text_field :company_name, {class: "span12", :required =>'required'} %>
+            <%= f.hidden_field :service_type, :value => 'pending' %>
+          </div>
+          <div class="control-group">
+            <label for="inputEmail" class="control-label">Address<span style="color:red"> *</span></label>
+            <%= f.text_area :usr_address, {:class=>"span12 ", :required =>'required', :rows => "5"} %>
+          </div>
+          <div class="control-group">
+            <label for="inputEmail" class="control-label">City<span style="color:red"> *</span></label>
+            <%= f.text_field :city, {class: "span12", :required =>'required'} %>
+          </div>
+          <div class="row-fluid">
+          <div class="control-group span6">
+            <label for="inputEmail" class="control-label">State<span style="color:red"> *</span></label>
+            <%= select_tag("user[state]", options_for_select(us_states, :selected => 'CA'), {prompt: "Select state.....", :required =>'required',:class=>"span12"}) %>
+          </div>
+          <div class="control-group span6">
+            <label for="inputEmail" class="control-label">Zipcode<span style="color:red"> *</span></label>
+            <%= f.text_field :zipcode, {class: "span12", :required =>'required'} %>
+          </div>
+          </div>
+          <div class="control-group">
+            <label for="inputEmail" class="control-label">Phone<span style="color:red"> *</span></label>
+            <%= f.text_field :phone, {class: "span12", :required =>'required'} %>
+          </div>
+          <div class="control-group">
+            <label for="inputEmail" class="control-label">Fax</label>
+            <%= f.text_field :fax, {class: "span12"} %>
+          </div>
+          <div class="control-group chh">
+            <%= f.check_box :terms_of_use, {:required =>'required'} %>&nbsp;
+            I agree to the TM Express <a href="/terms_of_use">Terms of Use.</a>
+          </div>
+          <div class="control-group">
+            <%= f.submit :class=>"btn btn-large btn-block btn-success", :value=>"Confirm and Sign Up",:id => "create_shipment"%>
+          </div>
+        </div><!-- Span Closed -->
+    <% end %>
+  </div>
+</div>

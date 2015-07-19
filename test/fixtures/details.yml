@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  shipment_id: 1
+  cod_value: 1
+  declare_value: 1
+
+two:
+  user_id: 1
+  shipment_id: 1
+  cod_value: 1
+  declare_value: 1

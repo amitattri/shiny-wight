@@ -1,0 +1,1 @@
+$('#shipment_history').html('<%= escape_javascript(render :partial => 'admin/user_shipment_history', :object => @shipments, :locals => {:sp_fm =>@sp_fm, :sp_to=>@sp_to,:id=>@id}) %>');

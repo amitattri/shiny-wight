@@ -1,0 +1,43 @@
+<table class="TrackShipmentadthr display"  id="example">
+  <thead>
+    <tr bgcolor="559012">
+      <th>Ship Form</th>
+      <th>Ship To</th>
+      <th>Tracking Number</th>
+      <th>Ship Date</th>
+      <th>Packages</th>
+      <th>Shipment Status</th>
+       
+    </tr>
+  </thead>
+  <tbody>
+    <% Array(@shipments).each do |shipment| %>
+    <tr class="odd_gradeX">
+      <%#= link_to user_of(shipment).company_name,"/admin/new_release?id=#{shipment.user_id}",  {:remote => true, 'data-toggle'=>"modal", 'data-target'=> '#modal-window'}  %>
+      <td><%= user_of(shipment).company_name %></td>
+      <td><%= client_of(shipment).client %></td>
+      <td><%= link_to shipment.tracking,"/shipments/#{shipment.tracking}/edit?pg=sh" %></td>
+      <td><%= shipment.ship_date.strftime("%m/%d/%Y") %></td>
+      <td><%= shipment.number_of_packages %></td>
+      <% if shipment.status == 'Delivered' %>
+        <td><!--<a href="/admin/show_signature?id=<%= shipment.id %>">--><%= shipment.status %></a></td>
+      <% else %>
+        <td><%= shipment.status %></td>
+      <% end %>
+       
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%# if controller.action_name == "user_shipment_history" %>
+  <div class="row-fluid">
+    <div id="print_by_date" class="modal hide" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <a href="/print_by_date?su_print=1" data-toggle="modal" data-target="#print_by_date" data-remote="true" style="clear: both;display: block;margin-bottom: 20px;" class="btn btn-success pull-right marginTop20 marginBottom10"><i class="icon-print icon-white"></i>Print Shipment</a>
+  </div>
+<%# end %>
+<script>
+$(document).ready( function() {
+ $('#example').dataTable();
+ $('#myCarousel').carousel();
+});
+</script>

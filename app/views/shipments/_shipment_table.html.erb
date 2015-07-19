@@ -1,0 +1,31 @@
+<table class="TrackShipmenttwo display"  id="example">
+  <thead>
+    <tr bgcolor="559012">
+      <th>Ship Form</th>
+      <th>Ship To</th>
+      <th>Tracking</th>
+      <th>Ship Date</th>
+      <th>Packages</th>
+      <th>Shipment Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Array(@shipments).each do |shipment| %>
+    <tr class="odd_gradeX">
+      <td><%= user_of(shipment).company_name %></td>
+      <td><%= client_of(shipment).client %></td>
+      <td><%= shipment.tracking %></td>
+      <td><%= shipment.ship_date.strftime("%m/%d/%Y") %></td>
+      <td><%= shipment.number_of_packages %></td>
+      <td><%= shipment.status %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<script>
+$(document).ready( function() {
+ $('#example').dataTable();
+ $('#myCarousel').carousel();
+});
+</script>

@@ -1,0 +1,54 @@
+<% if !flash[:notice].nil? %>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="alert alert-error alert-dismissable" id="alert-message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <b><%= flash[:notice] %></b>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% if !flash[:message].nil? %>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="alert alert-success alert-dismissable" id="alert-message">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <b><%= flash[:message] %></b>
+      </div>
+    </div>
+  </div>
+<% end %>
+<div class="inner-page">
+ <h3>Check paperclip</h3>
+</div>
+<!-- SITE MAIN CONATANT Start -->
+<div class="container marginTop30" style="min-height:500px;">
+
+<div class="row-fluid">
+  <div class="span7 contact-form">
+
+    <%= form_for(@contact, url: check_paperclip_path) do |f| %>
+     <div class="control-group">
+      <label class="control-label" for="inputEmail">Your Name<span style="color:red"> *</span></label>
+      <%= text_field_tag "contact[name]", nil, :class=>"span12", :required =>'required'%>
+     </div>
+
+     <div class="control-group">
+      <label class="control-label" for="inputEmail">Signature</label>
+      <%= f.file_field :signature %>
+     </div>
+     <div class="control-group">
+      <%= f.submit 'Submit', :class=>"btn btn-success marginTop20 marginBottom10"%>
+     </div>
+    <% end %>
+  </div><!-- Span Closed -->
+  <div class="span5 ContactAdd">
+    <% Contact.all.each do |pic| %>
+		  <td><a href=<%= pic.signature.url(:thumb) %>><img src=<%= pic.signature.url(:thumb) %> alt="AA Express Logo Green"></a></td>
+    <% end %>
+  </div>
+</div>
+
+</div>
+
+<!-- SITE MAIN CONATANT Close -->

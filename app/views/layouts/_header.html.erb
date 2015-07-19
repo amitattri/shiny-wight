@@ -1,0 +1,82 @@
+<!-- Header Container Bootstrap -->
+<div class="header">
+ <div class="container">
+    <div class="row-fluid">
+      <!-- Span Grid Start -->
+      <div id="logo" class="span3">
+	      <%= link_to image_tag("logo.png", alt: "Aa Express Logo Green"), root_path %>
+      </div>
+      <div class="span9 pull-right">
+        <div class="row-fluid">
+        <% if user_signed_in? && current_user.sudo_flag? %>
+          <div class="span9 pull-right ">
+           <% else %>
+           <div class="span7 pull-right ">
+           <% end %>
+            <div class="ph pull-left">
+              <ul>
+                <li class="phone1">Office: 946-666-4707</li>
+                <li class="phone1">Fax: 905-040-3062</li>
+                <% if user_signed_in? && current_user.sudo_flag? %>
+                  <li class="usr_name"><i class="fa fa-user" style="color:#0066FF" title="Admin login as">&nbsp;</i><span style="color:#0066FF"><%= user_name %></span></li>
+                <% end %>
+              </ul>
+            </div>
+            <div class="btn-group bbtt">
+              <% if user_signed_in? && !current_user.sudo_flag? %>
+                <%= link_to 'Logout', destroy_user_session_path, :class => "btn btn-success logout" %>
+              <% elsif user_signed_in? && current_user.sudo_flag? %>
+                <%= link_to 'Admin', admin_back_to_account_path, :class => "btn btn-success logout", :remote => true, 'data-toggle'=>"modal", 'data-target'=> '#modal-window' %>
+              <% else %>
+                <%= render 'devise/sessions/new' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="row-fluid marginTop30">
+        <div id="modal-window" class="modal hide" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+          <div style="position: static;" class="navbar navbar-inverse">
+              <div class="navbar-inner pull-right">
+                <div class="container">
+                  <a data-target=".navbar-inverse-collapse" data-toggle="collapse" class="btn btn-navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </a>
+                  <div class="nav-collapse collapse navbar-inverse-collapse">
+                    <ul class="nav">
+                      <li id="home"><%= link_to "Home", root_path %></li>
+                      <li id="tracking"><%= link_to "Tracking", tracking_path %></li>
+                      <li id="shipment"><%= link_to "Shipping", shipments_path %></li>
+                      <li id="reporting"><%= link_to "Reporting", reporting_path %></li>
+                      <li id="about_us"><%= link_to "About Us", about_us_path %></li>
+                      <li id="contact_us"><%= link_to "Contact Us", new_contact_path %></li>
+                    </ul>
+                  </div><!-- /.nav-collapse -->
+                </div>
+              </div><!-- /navbar-inner -->
+          </div>
+        </div>
+        <!-- Span Grid Start -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Header Container Bootstrap -->
+<script>
+    $(document).ready( function() {
+      <% if controller_name =='shipments' && (controller.action_name == "index" || controller.action_name == "new" || controller.action_name == "edit" ) %>
+        $('#shipment').addClass( "active");
+      <% elsif controller_name =="registrations" or (controller_name =='homes' && controller.action_name == "index") %>
+        $('#home').addClass( "active");
+      <% elsif controller_name =='shipments' && controller.action_name == "tracking" %>
+        $('#tracking').addClass( "active");
+      <% elsif controller_name =='shipments' || controller.action_name == "reporting" %>
+        $('#reporting').addClass( "active");
+      <% elsif controller.action_name == "about_us" %>
+        $('#about_us').addClass( "active");
+      <% elsif controller.action_name == "new_contact" %>
+        $('#contact_us').addClass( "active");
+      <% end %>
+    });
+</script>

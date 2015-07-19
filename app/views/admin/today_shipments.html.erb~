@@ -1,0 +1,60 @@
+<div class="inner-page">
+  <h3>Today's Shipment</h3>
+</div>
+<!-- SITE MAIN CONATANT Start -->
+<div class="container marginTop30" style="min-height:500px;">
+  <div class="row-fluid fom-heading">
+    <div class="span12">
+      <h4>Today's Shipment Details</h4>
+    </div>
+  </div>
+  <% if !flash[:notice].nil? %>
+      <div class="row-fluid">
+        <div class="alert alert-warning">
+          <%= flash[:notice] %>
+        </div>
+      </div>
+  <% end %>
+  <% if !flash[:message].nil? %>
+      <div class="row-fluid">
+        <div class="alert alert-success">
+          <%= flash[:message] %>
+        </div>
+      </div>
+  <% end %>
+  <div class="row-fluid">
+    <div id="modal-window-pic" class="modal hide" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+    <table class="TrackShipmentadtw display"  id="example">
+      <thead>
+      <tr bgcolor="559012">
+        <th>Company Name</th>
+        <th>Service Type</th>
+        <th>Tracking Number</th>
+        <th>Packages</th>
+        <th>City, State</th>
+        <th>Created At</th>
+        <th>Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% if @shipments.present? %>
+        <% @shipments.each do |shipment| %>
+          <tr class="odd_gradeX">
+            <td><%= user_of(shipment).company_name %></td>
+            <td><%= user_of(shipment).service_type %></td>
+            <td><%= link_to shipment.tracking,"/shipments/#{shipment.tracking}/edit?pg=ts" %></td>
+            <td><%= shipment.number_of_packages %></td>
+            <td><%= client_of(shipment).city %>, <%= client_of(shipment).state %></td>
+            <td><%= shipment.created_at.strftime("%m/%d/%Y") %>
+            </td>
+             
+              <td><%= shipment.status %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!-- SITE MAIN CONATANT Close -->
