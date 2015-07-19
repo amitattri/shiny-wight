@@ -73,7 +73,7 @@ TrackerV1::Application.configure do
   # Send deprecation notices to registered listeners.
   config.active_support.deprecation = :notify
 
-  cconfig.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
